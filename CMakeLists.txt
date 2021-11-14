@@ -3,6 +3,7 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
+
 project ("fast_io_func")
 
 # Включите подпроекты.

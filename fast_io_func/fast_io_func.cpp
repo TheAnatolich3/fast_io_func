@@ -7,6 +7,7 @@
 template <typename T>
 void print(T num) 
 {
+    static_assert(std::is_integral_v<T>, "Supports only integer types");
     if (num == 0) {
         putchar('0');
         return;
@@ -41,6 +42,7 @@ void print(T num)
 template <typename T>
 int scan(T& number) 
 {
+    static_assert(std::is_integral_v<T>, "Supports only integer types");
     T value = 0;
     bool sign = true, is_exit = false, is_fail = false;
     do {
@@ -104,7 +106,7 @@ int main(int argc, char** args)
     /*Test scan*/
     printf("Test scan numbers:\n");
     int a;
-    while (scan(a) == 0) 
+    while (scan(a) == 0)
     {
         printf("Incorrect input! Try again\n");
     }
@@ -112,5 +114,6 @@ int main(int argc, char** args)
     print(a);
     putchar('\n');
 
-	return 0;
+    //print("Hello");
+    return 0;
 }
