@@ -18,6 +18,16 @@ void print(T num)
     num = num * ((neg_sign) ? -1 : 1);
 
     T reverse_num = 0;
+
+    /*multply of 10*/
+    int zero_cnt = 0;
+    T num_copy = num;
+    while (num_copy % 10 == 0) 
+    {
+        ++zero_cnt;
+        num_copy /= 10;
+    }
+
     //reverse number
     while (num) 
     {
@@ -36,6 +46,11 @@ void print(T num)
         putchar('0' + reverse_num % 10);
         reverse_num /= 10;
     }
+
+    for (int i = 0; i < zero_cnt; ++i) 
+    {
+        putchar('0');
+    }
 }
 
 /*fast scan int numbers*/
@@ -44,14 +59,14 @@ int scan(T& number)
 {
     static_assert(std::is_integral_v<T>, "Supports only integer types");
     T value = 0;
-    bool sign = true, is_exit = false, is_fail = false;
+    bool sign = true, is_exit = false, is_fail = false, is_first = true;
     do {
         char s = getchar();
         if ((s >= '0' && s <= '9'))
         {
             value = value * 10 + (s - '0');
         }
-        else if (s == '-' && sign) 
+        else if (s == '-' && sign && is_first) 
         {
             sign = false;
         }
@@ -63,6 +78,7 @@ int scan(T& number)
         {
             is_fail = true;
         }
+        is_first = false;
     } while (!is_exit);
 
     if (!sign) 
